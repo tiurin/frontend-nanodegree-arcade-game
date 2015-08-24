@@ -1,3 +1,6 @@
+var cellX = 101;
+var cellY = 83;
+
 // Enemies our player must avoid
 var Enemy = function () {
   // Variables applied to each of our instances go here,
@@ -10,8 +13,8 @@ var Enemy = function () {
 }
 
 Enemy.prototype.init = function () {
-  this.x = -101;
-  this.y = 63 + getRandomIntInclusive(0, 2) * 83;
+  this.x = -cellX;
+  this.y = 63 + getRandomIntInclusive(0, 2) * cellY;
   this.speed = getRandomIntInclusive(75, 375);
 }
 
@@ -46,8 +49,8 @@ var Player = function () {
 }
 
 Player.prototype.init = function () {
-  this.x = getRandomIntInclusive(0, 4) * 101;
-  this.y = 83 * 5;
+  this.x = getRandomIntInclusive(0, 4) * cellX;
+  this.y = getRandomIntInclusive(4, 5) * cellY;
 }
 
 Player.prototype.update = function () {}
@@ -56,7 +59,19 @@ Player.prototype.render = function () {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 
-Player.prototype.handleInput = function () {}
+Player.prototype.handleInput = function (direction) {
+  if (direction === 'left' && this.x > 0) {
+    this.x -= cellX;
+
+  } else if (direction === 'right' && this.x < 4 * cellX) {
+    this.x += cellX;
+  } else if (direction === 'up' && this.y > 0) {
+    this.y -= cellY;
+  } else if (direction === 'down' && this.y < 5 * cellY) {
+    this.y += cellY;
+  }
+
+}
 
 
 // Now instantiate your objects.
