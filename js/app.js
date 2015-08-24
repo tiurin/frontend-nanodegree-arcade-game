@@ -54,12 +54,16 @@ Player.prototype.init = function () {
 }
 
 Player.prototype.update = function (enemies) {
+  if (this.y === 0) { // win event
+    this.init();
+    return;
+  }
   var that = this;
   enemies.forEach(function (enemy) {
     var distanceX = Math.abs(that.x - enemy.x);
     var distanceY = Math.abs(that.y - enemy.y);
 
-    if (distanceX < cellX && distanceY < enemyOffsetY) {
+    if (distanceX < cellX && distanceY < enemyOffsetY) { // collision event
       that.init();
     }
   });
