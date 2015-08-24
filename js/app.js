@@ -50,7 +50,7 @@ var Player = function () {
 
 Player.prototype.init = function () {
   this.x = getRandomIntInclusive(0, 4) * cellX;
-  this.y = getRandomIntInclusive(4, 5) * cellY;
+  this.y = 5 * cellY;
 }
 
 // returns 2 in case of win event, 1 in case of collision and 0 in nothing special happened
