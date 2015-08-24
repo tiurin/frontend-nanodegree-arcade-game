@@ -1,6 +1,13 @@
 frontend-nanodegree-arcade-game
 ===============================
 
-Students should use this rubric: https://www.udacity.com/course/viewer#!/c-ud015/l-3072058665/m-3072588797
+The goal of the game is to get your player cross the road from grass to the river avoiding collisions.
 
-for self-checking their submission.
+## Game launch
+
+1. Download this repository as ZIP file (see link on the right)
+1. Open `index.html` file with your favourite browser
+
+## Game control
+
+Use your cursor keys (← ↑ ↓ →) to move the character correspondingly.
