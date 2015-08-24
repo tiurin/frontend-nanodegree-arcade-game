@@ -6,16 +6,21 @@ var Enemy = function () {
   // The image/sprite for our enemies, this uses
   // a helper we've provided to easily load images
   this.sprite = 'images/enemy-bug.png';
-  this.x = 0;
+  this.init();
+}
+
+Enemy.prototype.init = function () {
+  this.x = -101;
   this.y = 63 + getRandomIntInclusive(0, 2) * 83;
   this.speed = getRandomIntInclusive(75, 375);
-  
-
 }
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function (dt) {
+  if (this.x > 505) {
+    this.init();
+  }
   var step = this.speed * dt;
   this.x += Math.round(step);
 }
@@ -34,14 +39,13 @@ function getRandomIntInclusive(min, max) {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-var Player = function () {
-}
+var Player = function () {}
 
-Player.prototype.update = function() {}
+Player.prototype.update = function () {}
 
-Player.prototype.render = function() {}
+Player.prototype.render = function () {}
 
-Player.prototype.handleInput = function() {}
+Player.prototype.handleInput = function () {}
 
 
 // Now instantiate your objects.
