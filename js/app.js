@@ -53,20 +53,24 @@ Player.prototype.init = function () {
   this.y = getRandomIntInclusive(4, 5) * cellY;
 }
 
+// returns 2 in case of win event, 1 in case of collision and 0 in nothing special happened
 Player.prototype.update = function (enemies) {
   if (this.y === 0) { // win event
     this.init();
-    return;
+    return 2;
   }
   var that = this;
+  var result = 0;
   enemies.forEach(function (enemy) {
     var distanceX = Math.abs(that.x - enemy.x);
     var distanceY = Math.abs(that.y - enemy.y);
 
-    if (distanceX < cellX && distanceY < enemyOffsetY) { // collision event
+    if (distanceX < cellX - 20 && distanceY < enemyOffsetY) { // collision event, 20px are deducted as hero and enemy doesn't occupy all pixels of their respective images
       that.init();
+      result = 1;
     }
   });
+  return result;
 }
 
 Player.prototype.render = function () {
