@@ -39,11 +39,22 @@ function getRandomIntInclusive(min, max) {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-var Player = function () {}
+var Player = function () {
+  this.sprite = 'images/char-boy.png';
+  this.init();
+
+}
+
+Player.prototype.init = function () {
+  this.x = getRandomIntInclusive(0, 4) * 101;
+  this.y = 83 * 5;
+}
 
 Player.prototype.update = function () {}
 
-Player.prototype.render = function () {}
+Player.prototype.render = function () {
+  ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+}
 
 Player.prototype.handleInput = function () {}
 
