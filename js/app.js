@@ -11,13 +11,13 @@ var Enemy = function () {
   // a helper we've provided to easily load images
   this.sprite = 'images/enemy-bug.png';
   this.init();
-}
+};
 
 Enemy.prototype.init = function () {
   this.x = -CELL_X;
   this.y = ENEMY_OFFSET_Y + getRandomIntInclusive(0, 2) * CELL_Y;
   this.speed = getRandomIntInclusive(75, 375);
-}
+};
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -27,12 +27,12 @@ Enemy.prototype.update = function (dt) {
   }
   var step = this.speed * dt;
   this.x += Math.round(step);
-}
+};
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function () {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 
 // Returns a random integer between min (included) and max (included)
 //
@@ -46,12 +46,12 @@ function getRandomIntInclusive(min, max) {
 var Player = function () {
   this.sprite = 'images/char-boy.png';
   this.init();
-}
+};
 
 Player.prototype.init = function () {
   this.x = getRandomIntInclusive(0, 4) * CELL_X;
   this.y = 5 * CELL_Y;
-}
+};
 
 // returns 2 in case of win event, 1 in case of collision and 0 in nothing special happened
 Player.prototype.update = function (enemies) {
@@ -71,11 +71,11 @@ Player.prototype.update = function (enemies) {
     }
   });
   return result;
-}
+};
 
 Player.prototype.render = function () {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-}
+};
 
 Player.prototype.handleInput = function (direction) {
   if (direction === 'left' && this.x > 0) {
@@ -87,7 +87,7 @@ Player.prototype.handleInput = function (direction) {
   } else if (direction === 'down' && this.y < 5 * CELL_Y) {
     this.y += CELL_Y;
   }
-}
+};
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
