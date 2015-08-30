@@ -1,6 +1,6 @@
-var cellX = 101;
-var cellY = 83;
-var enemyOffsetY = 63; // serves to draw enemies aligned to the stones
+var CELL_X = 101;
+var CELL_Y = 83;
+var ENEMY_OFFSET_Y = 63; // serves to draw enemies aligned to the stones
 
 // Enemies our player must avoid
 var Enemy = function () {
@@ -14,15 +14,15 @@ var Enemy = function () {
 }
 
 Enemy.prototype.init = function () {
-  this.x = -cellX;
-  this.y = enemyOffsetY + getRandomIntInclusive(0, 2) * cellY;
+  this.x = -CELL_X;
+  this.y = ENEMY_OFFSET_Y + getRandomIntInclusive(0, 2) * CELL_Y;
   this.speed = getRandomIntInclusive(75, 375);
 }
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function (dt) {
-  if (this.x > 5 * cellX) {
+  if (this.x > 5 * CELL_X) {
     this.init();
   }
   var step = this.speed * dt;
@@ -49,8 +49,8 @@ var Player = function () {
 }
 
 Player.prototype.init = function () {
-  this.x = getRandomIntInclusive(0, 4) * cellX;
-  this.y = 5 * cellY;
+  this.x = getRandomIntInclusive(0, 4) * CELL_X;
+  this.y = 5 * CELL_Y;
 }
 
 // returns 2 in case of win event, 1 in case of collision and 0 in nothing special happened
@@ -65,7 +65,7 @@ Player.prototype.update = function (enemies) {
     var distanceX = Math.abs(that.x - enemy.x);
     var distanceY = Math.abs(that.y - enemy.y);
 
-    if (distanceX < cellX - 20 && distanceY < enemyOffsetY) { // collision event, 20px are deducted as hero and enemy doesn't occupy all pixels of their respective images
+    if (distanceX < CELL_X - 20 && distanceY < ENEMY_OFFSET_Y) { // collision event, 20px are deducted as hero and enemy doesn't occupy all pixels of their respective images
       that.init();
       result = 1;
     }
@@ -79,13 +79,13 @@ Player.prototype.render = function () {
 
 Player.prototype.handleInput = function (direction) {
   if (direction === 'left' && this.x > 0) {
-    this.x -= cellX;
-  } else if (direction === 'right' && this.x < 4 * cellX) {
-    this.x += cellX;
+    this.x -= CELL_X;
+  } else if (direction === 'right' && this.x < 4 * CELL_X) {
+    this.x += CELL_X;
   } else if (direction === 'up' && this.y > 0) {
-    this.y -= cellY;
-  } else if (direction === 'down' && this.y < 5 * cellY) {
-    this.y += cellY;
+    this.y -= CELL_Y;
+  } else if (direction === 'down' && this.y < 5 * CELL_Y) {
+    this.y += CELL_Y;
   }
 }
 
