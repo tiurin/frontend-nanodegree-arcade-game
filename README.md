@@ -1,7 +1,7 @@
 frontend-nanodegree-arcade-game
 ===============================
 
-The goal of the game is to get your player cross the road from grass to the river avoiding collisions.
+The goal of the game is to get your player cross the road avoiding collisions.
 
 ## Game launch
 
@@ -9,6 +9,19 @@ The goal of the game is to get your player cross the road from grass to the rive
 1. Unpack it to the folder you want
 1. Open `index.html` file with your favourite browser
 
-## Game control
+## Game play
+
+A character appears on the one of the bottom fields of grass.
 
 Use your cursor keys (← ↑ ↓ →) to move the character correspondingly.
+
+To win the game you have to reach water line by crossing 3 lines of the road. There are bugs move on the road from left to right, with variable speed. You should avoid collision with them.
+
+If a player's character collides with a bug the game is lost. Grass and water are safe zones, no bugs appear there.
+
+After winning or loosing the game starts from the beginning.
+
+To exit the game just close the browser's tab where it is opened.
+
+Have fun!
+
