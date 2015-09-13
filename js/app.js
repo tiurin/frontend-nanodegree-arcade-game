@@ -4,10 +4,22 @@ var ENEMY_OFFSET_Y = 63; // serves to draw enemies aligned to the stones
 
 var Util = {
   /** 
-  Returns a random integer between min (included) and max (included). 
+  Returns a random integer between min (included) and max (included).
+  @function getRandomIntInclusive
   */
   getRandomIntInclusive: function (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+  },
+  /**
+  Changes difficulty level by adding or removing one enemy.
+  @function changeDifficulty
+  */
+  changeDifficulty: function (change) {
+    if (change === 'more') {
+      allEnemies.push(new Enemy());
+    } else if (change === 'less' && allEnemies.length > 1) {
+      allEnemies.pop();
+    }
   }
 };
 
@@ -94,7 +106,7 @@ Player.prototype.update = function (enemies) {
     var distanceX = Math.abs(that.x - enemy.x);
     var distanceY = Math.abs(that.y - enemy.y);
 
-    if (distanceX < CELL_X - 20 && distanceY < ENEMY_OFFSET_Y) { 
+    if (distanceX < CELL_X - 20 && distanceY < ENEMY_OFFSET_Y) {
       // collision event,
       // 20px are deducted as hero and enemy doesn't occupy all pixels of their respective images
       that.init();
@@ -130,14 +142,24 @@ Player.prototype.handleInput = function (direction) {
 
 //Listens for key presses and invokes updating player's position correspondingly.
 document.addEventListener('keyup', function (e) {
-  var allowedKeys = {
+  var cursorKeys = {
     37: 'left',
     38: 'up',
     39: 'right',
-    40: 'down'
+    40: 'down',
+  };
+  var levelKeys = {
+    77: 'more',
+    76: 'less'
   };
 
-  player.handleInput(allowedKeys[e.keyCode]);
+  var key = e.keyCode;
+  if (cursorKeys[key] !== undefined) {
+    player.handleInput(cursorKeys[key]);
+  } else if (levelKeys[key] !== undefined) {
+    Util.changeDifficulty(levelKeys[key]);
+  }
+
 });
 
 // Now instantiate your objects.
